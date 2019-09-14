@@ -79,29 +79,29 @@ Mappings ~
 
 If you prefer mappings over Ex commands, you might find the following useful:
 >
-    nnoremap <leader>me :<c-u>MRUedit<cr>
-    nnoremap <leader>ms :<c-u>MRUsplit<cr>
-    nnoremap <leader>mv :<c-u>vertical MRUsplit<cr>
-    nnoremap <leader>mt :<c-u>tab MRUsplit<cr>
+    nnoremap <silent> <leader>me :<c-u>MRUedit<cr>
+    nnoremap <silent> <leader>ms :<c-u>MRUsplit<cr>
+    nnoremap <silent> <leader>mv :<c-u>vertical MRUsplit<cr>
+    nnoremap <silent> <leader>mt :<c-u>tab MRUsplit<cr>
 <
 
 And similar for the other commands:
 >
     " Quickly jump to a listed buffer
-    nnoremap <leader>be :<c-u>Buffer<cr>
-    nnoremap <leader>bs :<c-u>SBuffer<cr>
-    nnoremap <leader>bv :<c-u>vertical SBuffer<cr>
-    nnoremap <leader>bt :<c-u>tab SBuffer<cr>
+    nnoremap <silent> <leader>be :<c-u>Buffer<cr>
+    nnoremap <silent> <leader>bs :<c-u>SBuffer<cr>
+    nnoremap <silent> <leader>bv :<c-u>vertical SBuffer<cr>
+    nnoremap <silent> <leader>bt :<c-u>tab SBuffer<cr>
 
     " Quickly jump to a tag location
-    nnoremap <leader>te :<c-u>Tjump<cr>
-    nnoremap <leader>ts :<c-u>STjump<cr>
-    nnoremap <leader>tv :<c-u>vertical STjump<cr>
-    nnoremap <leader>tt :<c-u>tab STjump<cr>
+    nnoremap <silent> <leader>te :<c-u>Tjump<cr>
+    nnoremap <silent> <leader>ts :<c-u>STjump<cr>
+    nnoremap <silent> <leader>tv :<c-u>vertical STjump<cr>
+    nnoremap <silent> <leader>tt :<c-u>tab STjump<cr>
 
     " Quickly jump to a help tag
-    nnoremap <leader>hh :<c-u>Help<cr>
-    nnoremap <leader>hv :<c-u>vertical Help<cr>
-    nnoremap <leader>ht :<c-u>tab Help<cr>
+    nnoremap <silent> <leader>hh :<c-u>Help<cr>
+    nnoremap <silent> <leader>hv :<c-u>vertical Help<cr>
+    nnoremap <silent> <leader>ht :<c-u>tab Help<cr>
 <
  vim:tw=78:et:ft=help:norl:
