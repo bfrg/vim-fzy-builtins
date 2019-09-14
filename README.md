@@ -13,15 +13,15 @@ well as Vim's internal help tags.
 |-------------|---------------------------------------------------------------------------|
 | `Buffer`    | List buffers (like `:ls`), edit selected buffer in current window.        |
 | `SBuffer`\* | List buffers (like `:ls`), edit selected buffer in new split.             |
-| `ME`        | List most-recently-used files, edit selected file in current window.      |
-| `MS`\*      | List most-recently-used files, edit selected file in new split.           |
+| `MRUedit`   | List Most-Recently-Used files, edit selected file in current window.      |
+| `MRUsplit`\*| List Most-Recently-Used files, edit selected file in new split.           |
 | `Tjump`     | List tags, edit file containing selected tag in current window.           |
 | `STjump`\*  | List tags, edit file containing selected tag in new split.                |
 | `Help`\*    | List help tags, open help page containing the selected tag in new split.  |
 
 \* Commands that split the current window accept a command modifier. For
 example, to open the help page with the selected tag in a new vertical split,
-run `:vert Help`. `:tab MS` will open the selected file in a new tab.
+run `:vertical Help`. `:tab MRUsplit` will open the selected file in a new tab.
 
 For a full list of supported command modifiers, see `:help <mods>`.
 

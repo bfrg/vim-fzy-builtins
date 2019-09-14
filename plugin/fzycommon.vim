@@ -3,7 +3,7 @@
 " File:         plugin/fzycommon.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-common
-" Last Change:  Sep 13, 2019
+" Last Change:  Sep 14, 2019
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -16,8 +16,8 @@ let s:save_cpo = &cpoptions
 set cpoptions&vim
 
 " Jump to Most-Recently-Used files, v:oldfiles
-command! ME call fzy#common#mru('edit')
-command! MS call fzy#common#mru('split', <q-mods>)
+command! MRUedit  call fzy#common#mru('edit')
+command! MRUsplit call fzy#common#mru('split', <q-mods>)
 
 " Jump to listed buffers
 command! Buffer  call fzy#common#buffers('buffer')
