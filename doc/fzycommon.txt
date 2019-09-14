@@ -37,7 +37,8 @@ COMMANDS                                                 *fzy-common-commands*
                 |rightbelow| (same as |belowright|)
 
 :MRUedit                                                        *fzy-:MRUedit*
-            List |oldfiles|, edit the selected file in current window.
+            List |v:oldfiles|, edit the selected file in current window.
+            Note: Only readable files are listed.
 
 :MRUsplit                                                      *fzy-:MRUsplit*
             Same as |fzy-:MRUedit|, but open selected file in new |split|.
