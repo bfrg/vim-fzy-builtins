@@ -9,15 +9,15 @@ well as Vim's internal help tags.
 
 ## Usage
 
-| Command     | Description                                                                   |
-|-------------|-------------------------------------------------------------------------------|
-| `Buffer`    | Show all listed buffers, edit selected buffer in current window.              |
-| `SBuffer`\* | Show all listed buffers, edit selected buffer in new split.                   |
-| `ME`        | List most-recently-used files, edit selected file in current window.          |
-| `MS`\*      | List most-recently-used files, edit selected file in new split.               |
-| `Tjump`     | List all tags, edit file containing selected tag in current window.           |
-| `STjump`\*  | List all tags, edit file containing selected tag in new split.                |
-| `Help`\*    | List all help tags, open help page containing the selected tag in new split . |
+| Command     | Description                                                               |
+|-------------|---------------------------------------------------------------------------|
+| `Buffer`    | List buffers (like `:ls`), edit selected buffer in current window.        |
+| `SBuffer`\* | List buffers (like `:ls`), edit selected buffer in new split.             |
+| `ME`        | List most-recently-used files, edit selected file in current window.      |
+| `MS`\*      | List most-recently-used files, edit selected file in new split.           |
+| `Tjump`     | List tags, edit file containing selected tag in current window.           |
+| `STjump`\*  | List tags, edit file containing selected tag in new split.                |
+| `Help`\*    | List help tags, open help page containing the selected tag in new split.  |
 
 \* Commands that split the current window accept a command modifier. For
 example, to open the help page with the selected tag in a new vertical split,
