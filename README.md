@@ -26,6 +26,47 @@ run `:vertical Help`. `:tab MRUsplit` will open the selected file in a new tab.
 
 For a full list of supported command modifiers, see `:help fzy-:SBuffer`.
 
+## Tips and Tricks
+
+#### Custom commands
+
+If you prefer shorter Ex commands, add the following to your `vimrc`:
+```vim
+command! ME MRUedit
+command! MS MRUsplit
+command! MV vertical MRUsplit
+command! MT tab MRUsplit
+```
+The command names are inspired by [vim-tinyMRU][tinymru].
+
+#### Mappings
+
+If you prefer mappings over Ex commands, you might find the following useful:
+```vim
+" Jump between listed buffers
+nnoremap <silent> <leader>be :<c-u>Buffer<cr>
+nnoremap <silent> <leader>bs :<c-u>SBuffer<cr>
+nnoremap <silent> <leader>bv :<c-u>vertical SBuffer<cr>
+nnoremap <silent> <leader>bt :<c-u>tab SBuffer<cr>
+
+" Quickly edit oldfiles
+nnoremap <silent> <leader>me :<c-u>MRUedit<cr>
+nnoremap <silent> <leader>ms :<c-u>MRUsplit<cr>
+nnoremap <silent> <leader>mv :<c-u>vertical MRUsplit<cr>
+nnoremap <silent> <leader>mt :<c-u>tab MRUsplit<cr>
+
+" Quickly jump to tag location
+nnoremap <silent> <leader>te :<c-u>Tjump<cr>
+nnoremap <silent> <leader>ts :<c-u>STjump<cr>
+nnoremap <silent> <leader>tv :<c-u>vertical STjump<cr>
+nnoremap <silent> <leader>tt :<c-u>tab STjump<cr>
+
+" Quickly open help pages
+nnoremap <silent> <leader>hh :<c-u>Help<cr>
+nnoremap <silent> <leader>hv :<c-u>vertical Help<cr>
+nnoremap <silent> <leader>ht :<c-u>tab Help<cr>
+```
+
 
 ## Installation
 
@@ -58,4 +99,5 @@ Distributed under the same terms as Vim itself. See `:help license`.
 
 [fzy]: https://github.com/jhawthorn/fzy
 [vim-fzy]: https://github.com/bfrg/vim-fzy
+[tinymru]: https://github.com/romainl/vim-tinyMRU
 [plug]: https://github.com/junegunn/vim-plug
