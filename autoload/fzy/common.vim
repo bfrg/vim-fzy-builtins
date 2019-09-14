@@ -3,7 +3,7 @@
 " File:         autoload/fzy/common.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-common
-" Last Change:  Sep 13, 2019
+" Last Change:  Sep 14, 2019
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -30,7 +30,7 @@ function! fzy#common#buffers(edit_cmd, ...) abort
             \ 'empty(bufname(v:val)) ? v:val : bufname(v:val)'
             \ )
     call fzy#start(items, function('s:open_file_cb', [cmd]), {
-            \ 'statusline': printf(':%s [listed buffers]', cmd)
+            \ 'statusline': printf(':%s [listed buffers (%d)]', cmd, len(items))
             \ })
 endfunction
 
@@ -40,7 +40,7 @@ function! fzy#common#mru(edit_cmd, ...) abort
             \ : a:edit_cmd
     let items = filter(copy(v:oldfiles), "filereadable(fnamemodify(v:val, ':p'))")
     call fzy#start(items, function('s:open_file_cb', [cmd]), {
-            \ 'statusline': printf(':%s [oldfiles]', cmd)
+            \ 'statusline': printf(':%s [oldfiles (%d)]', cmd, len(items))
             \ })
 endfunction
 
@@ -48,7 +48,7 @@ function! fzy#common#help(help_cmd, mods) abort
     let cmd = empty(a:mods) ? a:help_cmd : (a:mods . ' ' . a:help_cmd)
     let items = 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
     call fzy#start(items, function('s:open_tag_cb', [cmd]), {
-            \ 'statusline': printf(':%s [helptags]', cmd)
+            \ 'statusline': printf(':%s [helptags (%d)]', cmd, len(items))
             \ })
 endfunction
 
@@ -58,7 +58,7 @@ function! fzy#common#tags(tags_cmd, ...) abort
             \ : a:tags_cmd
     let items = uniq(sort(map(taglist('.*'), 'v:val.name')))
     call fzy#start(items, function('s:open_tag_cb', [cmd]), {
-            \ 'statusline': printf(':%s [%d tags]', cmd, len(items))
+            \ 'statusline': printf(':%s [tags (%d)]', cmd, len(items))
             \ })
 endfunction
 
