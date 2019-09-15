@@ -21,17 +21,16 @@ function! s:open_tag_cb(vim_cmd, choice) abort
     execute a:vim_cmd escape(a:choice, '"')
 endfunction
 
-function! fzy#common#buffers(edit_cmd, ...) abort
+function! fzy#common#buffers(edit_cmd, bang, ...) abort
     let cmd = a:0
             \ ? empty(a:1) ? a:edit_cmd : (a:1 . ' ' . a:edit_cmd)
             \ : a:edit_cmd
     let items = map(
-            \ filter(range(1, bufnr('$')), 'buflisted(v:val)'),
-            \ 'empty(bufname(v:val)) ? v:val : bufname(v:val)'
+            \ filter(range(1, bufnr('$')), {_,val -> a:bang ? bufexists(val) : buflisted(val)}),
+            \ {_,val -> empty(bufname(val)) ? val : bufname(val)}
             \ )
-    call fzy#start(items, function('s:open_file_cb', [cmd]), {
-            \ 'statusline': printf(':%s [listed buffers (%d)]', cmd, len(items))
-            \ })
+    let stl = printf(':%s [%s buffers (%d)]', cmd, a:bang ? 'all' : 'listed', len(items))
+    call fzy#start(items, function('s:open_file_cb', [cmd]), {'statusline': stl})
 endfunction
 
 function! fzy#common#mru(edit_cmd, ...) abort

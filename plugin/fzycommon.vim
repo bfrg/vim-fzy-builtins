@@ -20,8 +20,8 @@ command! MRUedit  call fzy#common#mru('edit')
 command! MRUsplit call fzy#common#mru('split', <q-mods>)
 
 " Jump to listed buffers
-command! Buffer  call fzy#common#buffers('buffer')
-command! SBuffer call fzy#common#buffers('sbuffer', <q-mods>)
+command! -bang Buffer  call fzy#common#buffers('buffer', <bang>0)
+command! -bang SBuffer call fzy#common#buffers('sbuffer', <bang>0, <q-mods>)
 
 " Jump to file in global arglist
 command! Args  call fzy#common#arg('edit', 0)

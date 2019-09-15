@@ -18,11 +18,14 @@ The plugin is an extension for https://github.com/bfrg/vim-fzy.
 COMMANDS                                                 *fzy-common-commands*
                                                             *fzy-common-usage*
 
-:Buffer                                                          *fzy-:Buffer*
+:Buffer[!]                                                       *fzy-:Buffer*
             List buffers (same as |:ls|), edit the selected buffer in current
             window.
 
-:SBuffer                                                        *fzy-:SBuffer*
+            When the [!] is included, the list will show all existing buffers
+            (same as ":ls!").
+
+:SBuffer[!]                                                     *fzy-:SBuffer*
             Same as |fzy-:Buffer|, but edit selected buffer in new |split|.
             Command can be preceded by a command modifier. For example, to
             open the selected buffer in a new |vertical| split, run >
