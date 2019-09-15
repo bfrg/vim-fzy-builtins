@@ -1,4 +1,4 @@
-*fzycommon.txt*  Fuzzy-select buffers, tags, help tags, and v:oldfiles.
+*fzycommon.txt*  Fuzzy-select buffers, args, tags, help tags, and v:oldfiles.
 
 Author:     bfrg <https://github.com/bfrg>
 Website:    https://github.com/bfrg/vim-fzy-common
@@ -35,6 +35,24 @@ COMMANDS                                                 *fzy-common-commands*
                 |botright|
                 |leftabove|  (same as |aboveleft|)
                 |rightbelow| (same as |belowright|)
+
+:Args                                                              *fzy-:Args*
+            Print global |argument-list|, edit the selected file in current
+            window.
+
+:SArgs                                                            *fzy-:SArgs*
+            Same as |fzy-:Args|, but open the selected file in a new |split|.
+            Command can be preceded by the same command modifiers as
+            |fzy-:SBuffer|.
+
+:Largs                                                            *fzy-:Largs*
+            Print local |argument-list| (local to the window), edit the
+            selected file in current window.
+
+:SLargs                                                          *fzy-:SLargs*
+            Same as |fzy-:Largs|, but open the selected file in a new |split|.
+            Command can be preceded by the same command modifiers as
+            |fzy-:SBuffer|.
 
 :MRUedit                                                        *fzy-:MRUedit*
             List |v:oldfiles|, edit the selected file in current window.

@@ -3,7 +3,7 @@
 " File:         autoload/fzy/common.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-common
-" Last Change:  Sep 14, 2019
+" Last Change:  Sep 15, 2019
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -41,6 +41,17 @@ function! fzy#common#mru(edit_cmd, ...) abort
     let items = filter(copy(v:oldfiles), "filereadable(fnamemodify(v:val, ':p'))")
     call fzy#start(items, function('s:open_file_cb', [cmd]), {
             \ 'statusline': printf(':%s [oldfiles (%d)]', cmd, len(items))
+            \ })
+endfunction
+
+function! fzy#common#arg(edit_cmd, local, ...) abort
+    let items = a:local ? argv() : argv(-1, -1)
+    let str = a:local ? 'local arglist' : 'global arglist'
+    let cmd = a:0
+            \ ? empty(a:1) ? a:edit_cmd : (a:1 . ' ' . a:edit_cmd)
+            \ : a:edit_cmd
+    call fzy#start(items, function('s:open_file_cb', [cmd]), {
+            \ 'statusline': printf(':%s [%s (%d)]', cmd, str, len(items))
             \ })
 endfunction
 

@@ -3,7 +3,7 @@
 " File:         plugin/fzycommon.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-common
-" Last Change:  Sep 14, 2019
+" Last Change:  Sep 15, 2019
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -22,6 +22,14 @@ command! MRUsplit call fzy#common#mru('split', <q-mods>)
 " Jump to listed buffers
 command! Buffer  call fzy#common#buffers('buffer')
 command! SBuffer call fzy#common#buffers('sbuffer', <q-mods>)
+
+" Jump to file in global arglist
+command! Args  call fzy#common#arg('edit', 0)
+command! SArgs call fzy#common#arg('split', 0, <q-mods>)
+
+" Jump to file in local arglist
+command! Largs  call fzy#common#arg('edit', 1)
+command! SLargs call fzy#common#arg('split', 1, <q-mods>)
 
 " Jump to tags
 command!  Tjump call fzy#common#tags('tjump')
