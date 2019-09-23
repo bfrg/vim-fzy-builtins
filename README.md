@@ -3,7 +3,7 @@
 Fuzzy-select buffers, files in `arglist`, tags, help tags, and `oldfiles` using
 the fuzzy-searcher [fzy][fzy].
 
-**Note:** This plugin is an extension for [vim-fzy][vim-fzy]. See
+**Note:** This plugin requires [vim-fzy][vim-fzy]. See
 [installation](#installation) instructions below.
 
 
@@ -28,6 +28,12 @@ example, to open the help page with the selected tag in a new vertical split,
 run `:vertical Help`. `:tab MRUsplit` will open the selected file in a new tab.
 
 For a full list of supported command modifiers, see `:help fzy-:SBuffer`.
+
+The default height of the terminal window and the fzy input prompt can be
+changed through the variable `g:fzy`:
+```vim
+let g:fzy = {'height': 15, 'prompt': '▶ '}
+```
 
 
 ## Tips and Tricks
