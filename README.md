@@ -6,6 +6,14 @@ the fuzzy-searcher [fzy][fzy].
 **Note:** This plugin requires [vim-fzy][vim-fzy]. See
 [installation](#installation) instructions below.
 
+<dl>
+  <p align="center">
+  <a href="https://asciinema.org/a/268637">
+    <img src="https://asciinema.org/a/268637.png" width="480">
+  </a>
+  </p>
+</dl>
+
 
 ## Usage
 
