@@ -76,6 +76,18 @@ COMMANDS                                                 *fzy-common-commands*
             Command can be preceded by the same command modifiers as
             |fzy-:SBuffer|.
 
+:Marks[!]                                                         *fzy-:Marks*
+            List marks (same as |:marks|), jump to the selected mark in the
+            current window.
+
+            Add [!] to jump to the selected mark without changing the
+            jumplist when jumping within the current buffer.
+
+:SMarks[!]                                                       *fzy-:SMarks*
+            Same as |fzy-:Marks|, but jump to the selected mark in a new
+            |split|. Command can be preceded by the same command modifiers as
+            |fzy-:SBuffer|.
+
 :Help                                                              *fzy-:Help*
             List all help tags, jump to the selected tag in new |split|.
             Command can be preceded by the same command modifiers as

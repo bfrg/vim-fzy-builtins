@@ -1,9 +1,9 @@
 " ==============================================================================
-" Fuzzy-select buffers, args, tags, help tags, oldfiles
+" Fuzzy-select buffers, args, tags, help tags, oldfiles, marks
 " File:         autoload/fzy/common.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-common
-" Last Change:  Sep 21, 2019
+" Last Change:  Oct 11, 2019
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -19,6 +19,14 @@ endfunction
 function! s:open_tag_cb(vim_cmd, choice) abort
     call histadd('cmd', a:vim_cmd . ' ' . a:choice)
     execute a:vim_cmd escape(a:choice, '"')
+endfunction
+
+function! s:marks_cb(split_cmd, bang, item) abort
+    if !empty(a:split_cmd)
+        execute a:split_cmd
+    endif
+    let cmd = a:bang ? "g`" : "`"
+    execute 'normal! ' .. cmd .. a:item[1]
 endfunction
 
 function! fzy#common#buffers(edit_cmd, bang, ...) abort
@@ -70,6 +78,14 @@ function! fzy#common#tags(tags_cmd, ...) abort
     let items = uniq(sort(map(taglist('.*'), 'v:val.name')))
     return fzy#start(items, function('s:open_tag_cb', [cmd]), {
             \ 'statusline': printf(':%s [tags (%d)]', cmd, len(items))
+            \ })
+endfunction
+
+function! fzy#common#marks(bang, ...) abort
+    let cmd = a:0 ? a:1 .. ' split' : ''
+    let output = split(execute('marks'), '\n')
+    return fzy#start(output[1:], function('s:marks_cb', [cmd, a:bang]), {
+            \ 'statusline': output[0]
             \ })
 endfunction
 

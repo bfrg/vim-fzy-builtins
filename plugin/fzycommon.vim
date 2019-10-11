@@ -1,9 +1,9 @@
 " ==============================================================================
-" Fuzzy-select buffers, args, tags, help tags, oldfiles
+" Fuzzy-select buffers, args, tags, help tags, oldfiles, marks
 " File:         plugin/fzycommon.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-common
-" Last Change:  Sep 21, 2019
+" Last Change:  Oct 11, 2019
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -34,6 +34,10 @@ command! -bar SLargs call fzy#common#arg('split', 1, <q-mods>)
 " Jump to tags
 command! -bar  Tjump call fzy#common#tags('tjump')
 command! -bar STjump call fzy#common#tags('stjump', <q-mods>)
+
+" Jump to file marks
+command! -bar -bang  Marks call fzy#marks#jump(<bang>0)
+command! -bar -bang SMarks call fzy#marks#jump(<bang>0, <q-mods>)
 
 " Jump to Vim's help tags
 command! -bar Help call fzy#common#help('help', <q-mods>)

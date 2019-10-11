@@ -1,7 +1,7 @@
 # vim-fzy-common
 
-Fuzzy-select buffers, files in `arglist`, tags, help tags, and `oldfiles` using
-the fuzzy-searcher [fzy][fzy].
+Fuzzy-select buffers, files in `arglist`, tags, help tags, `oldfiles`, and file
+marks using the fuzzy-searcher [fzy][fzy].
 
 **Note:** This plugin requires [vim-fzy][vim-fzy]. See
 [installation](#installation) instructions below.
@@ -17,19 +17,22 @@ the fuzzy-searcher [fzy][fzy].
 
 ## Usage
 
-| Command     | Description                                                             |
-|-------------|-------------------------------------------------------------------------|
-| `Buffer`    | List **buffers**, edit selected buffer in current window.               |
-| `SBuffer`\* | Same as `Buffer`, but edit the selected buffer in a new split.          |
-| `Args`      | List **global arglist**, edit selected file in current window.          |
-| `SArgs`\*   | Same as `Args`, but edit the selected file in a new split.              |
-| `Largs`     | List **local arglist**, edit selected file in current window.           |
-| `SLargs`\*  | Same as `Largs`, but edit the selected file in a new split.             |
-| `MRUedit`   | List **Most-Recently-Used** files, edit selected file in current window.|
-| `MRUsplit`\*| Same as `MRUedit`, but edit the selected file in a new split.           |
-| `Tjump`     | List **tags**, jump to selected tag in current window.                  |
-| `STjump`\*  | Same as `Tjump`, but jump to the selected tag in a new split.           |
-| `Help`\*    | List **help tags**, open help page with the selected tag in new split.  |
+| Command       | Description                                                             |
+|---------------|-------------------------------------------------------------------------|
+| `:Buffer`     | List **buffers**, edit selected buffer in current window.               |
+| `:SBuffer`\*  | Same as `:Buffer`, but edit the selected buffer in a new split.         |
+| `:Args`       | List **global arglist**, edit selected file in current window.          |
+| `:SArgs`\*    | Same as `:Args`, but edit the selected file in a new split.             |
+| `:Largs`      | List **local arglist**, edit selected file in current window.           |
+| `:SLargs`\*   | Same as `:Largs`, but edit the selected file in a new split.            |
+| `:MRUedit`    | List **Most-Recently-Used** files, edit selected file in current window.|
+| `:MRUsplit`\* | Same as `:MRUedit`, but edit the selected file in a new split.          |
+| `:Tjump`      | List **tags**, jump to selected tag in current window.                  |
+| `:STjump`\*   | Same as `:Tjump`, but jump to the selected tag in a new split.          |
+| `:Marks`      | List **marks**, jump to the selected mark in the current window.        |
+| `:SMarks`\*   | Same as `:Marks`, but jump to the selected mark in a new split.         |
+| `:Help`\*     | List **help tags**, open help page with the selected tag in new split.  |
+
 
 \*Commands that split the current window accept a **command modifier**. For
 example, to open the help page with the selected tag in a new vertical split,
