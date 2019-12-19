@@ -1,9 +1,9 @@
 " ==============================================================================
 " Fuzzy-select buffers, args, tags, help tags, oldfiles, marks
-" File:         autoload/fzy/common.vim
+" File:         autoload/fzy/builtins.vim
 " Author:       bfrg <https://github.com/bfrg>
-" Website:      https://github.com/bfrg/vim-fzy-common
-" Last Change:  Oct 11, 2019
+" Website:      https://github.com/bfrg/vim-fzy-builtins
+" Last Change:  Dec 20, 2019
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -29,7 +29,7 @@ function! s:marks_cb(split_cmd, bang, item) abort
     execute 'normal! ' .. cmd .. a:item[1]
 endfunction
 
-function! fzy#common#buffers(edit_cmd, bang, ...) abort
+function! fzy#builtins#buffers(edit_cmd, bang, ...) abort
     let cmd = a:0
             \ ? empty(a:1) ? a:edit_cmd : (a:1 . ' ' . a:edit_cmd)
             \ : a:edit_cmd
@@ -42,7 +42,7 @@ function! fzy#common#buffers(edit_cmd, bang, ...) abort
     return fzy#start(items, function('s:open_file_cb', [cmd]), {'statusline': stl})
 endfunction
 
-function! fzy#common#mru(edit_cmd, ...) abort
+function! fzy#builtins#mru(edit_cmd, ...) abort
     let cmd = a:0
             \ ? empty(a:1) ? a:edit_cmd : (a:1 . ' ' . a:edit_cmd)
             \ : a:edit_cmd
@@ -52,7 +52,7 @@ function! fzy#common#mru(edit_cmd, ...) abort
             \ })
 endfunction
 
-function! fzy#common#arg(edit_cmd, local, ...) abort
+function! fzy#builtins#arg(edit_cmd, local, ...) abort
     let items = a:local ? argv() : argv(-1, -1)
     let str = a:local ? 'local arglist' : 'global arglist'
     let cmd = a:0
@@ -63,7 +63,7 @@ function! fzy#common#arg(edit_cmd, local, ...) abort
             \ })
 endfunction
 
-function! fzy#common#help(help_cmd, mods) abort
+function! fzy#builtins#help(help_cmd, mods) abort
     let cmd = empty(a:mods) ? a:help_cmd : (a:mods . ' ' . a:help_cmd)
     let items = 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
     return fzy#start(items, function('s:open_tag_cb', [cmd]), {
@@ -71,7 +71,7 @@ function! fzy#common#help(help_cmd, mods) abort
             \ })
 endfunction
 
-function! fzy#common#tags(tags_cmd, ...) abort
+function! fzy#builtins#tags(tags_cmd, ...) abort
     let cmd = a:0
             \ ? empty(a:1) ? a:tags_cmd : (a:1 . ' ' . a:tags_cmd)
             \ : a:tags_cmd
@@ -81,7 +81,7 @@ function! fzy#common#tags(tags_cmd, ...) abort
             \ })
 endfunction
 
-function! fzy#common#marks(bang, ...) abort
+function! fzy#builtins#marks(bang, ...) abort
     let cmd = a:0 ? a:1 .. ' split' : ''
     let output = split(execute('marks'), '\n')
     return fzy#start(output[1:], function('s:marks_cb', [cmd, a:bang]), {

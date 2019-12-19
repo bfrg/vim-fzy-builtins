@@ -1,4 +1,4 @@
-# vim-fzy-common
+# vim-fzy-builtins
 
 Fuzzy-select buffers, files in `arglist`, tags, help tags, `oldfiles`, and file
 marks using the fuzzy-searcher [fzy][fzy].
@@ -103,9 +103,9 @@ Run the following commands in your terminal:
 ```bash
 $ cd ~/.vim/pack/git-plugins/start
 $ git clone https://github.com/bfrg/vim-fzy
-$ git clone https://github.com/bfrg/vim-fzy-common
+$ git clone https://github.com/bfrg/vim-fzy-builtins
 $ vim -u NONE -c "helptags vim-fzy/doc" -c q
-$ vim -u NONE -c "helptags vim-fzy-common/doc" -c q
+$ vim -u NONE -c "helptags vim-fzy-builtins/doc" -c q
 ```
 **Note:** The directory name `git-plugins` is arbitrary, you can pick any other
 name. For more details see `:help packages`.
@@ -116,7 +116,7 @@ Assuming [vim-plug][plug] is your favorite plugin manager, add the following to
 your `vimrc`:
 ```vim
 Plug 'bfrg/vim-fzy'
-Plug 'bfrg/vim-fzy-common'
+Plug 'bfrg/vim-fzy-builtins'
 ```
 
 
