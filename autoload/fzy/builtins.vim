@@ -3,7 +3,7 @@
 " File:         autoload/fzy/builtins.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-builtins
-" Last Change:  Feb 11, 2020
+" Last Change:  Feb 12, 2020
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -80,7 +80,7 @@ function! fzy#builtins#help(help_cmd, mods) abort
     return fzy#start(items, funcref('s:open_tag_cb', [cmd]), {
             \ 'prompt': s:get('prompt'),
             \ 'height': s:get('height'),
-            \ 'statusline': printf(':%s [helptags (%d)]', cmd, len(items))
+            \ 'statusline': printf(':%s [helptags]', cmd)
             \ })
 endfunction
 
