@@ -40,11 +40,25 @@ run `:vertical Help`. `:tab MRUsplit` will open the selected file in a new tab.
 
 For a full list of supported command modifiers, see `:help fzy-:SBuffer`.
 
-The default height of the terminal window and the fzy input prompt can be
-changed through the variable `g:fzy`:
+
+## Configuration
+
+Options can be passed to `fzy` through the variable `g:fzy`. Currently, the
+following entries are supported:
+
+| Entry             | Description                                                                       | Default |
+| ----------------- | --------------------------------------------------------------------------------- | ------- |
+| `g:fzy.lines`     | Specify how many lines of results to show. Equivalent to fzy's `--lines` option.  | `10`    |
+| `g:fzy.prompt`    | Fzy input prompt. Equivalent to fzy's `--prompt` option.                          | `▶ `    |
+| `g:fzy.showinfo`  | Show selection info line. Equivalent to fzy's `--show-info` option.               | `0`     |
+
+Example:
 ```vim
-let g:fzy = {'height': 15, 'prompt': '▶ '}
+let g:fzy = {'lines': 15, 'prompt': '>>> ', 'showinfo': 1}
 ```
+
+**Note:** The values are also used by [vim-fzy-find][fzy-find] to provide a
+uniform fzy interface.
 
 
 ## Tips and Tricks
@@ -126,5 +140,6 @@ Distributed under the same terms as Vim itself. See `:help license`.
 
 [fzy]: https://github.com/jhawthorn/fzy
 [vim-fzy]: https://github.com/bfrg/vim-fzy
+[fzy-find]: https://github.com/bfrg/vim-fzy-find
 [tinymru]: https://github.com/romainl/vim-tinyMRU
 [plug]: https://github.com/junegunn/vim-plug

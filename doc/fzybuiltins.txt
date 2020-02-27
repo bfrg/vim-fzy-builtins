@@ -100,14 +100,29 @@ COMMANDS                                               *fzy-builtins-commands*
 CONFIGURATION                                            *fzy-builtins-config*
 
                                                           *fzy-builtins-g:fzy*
-The height of the terminal window and the fzy input prompt can be changed
-through the variable |g:fzy|. Example:
->
-    let g:fzy = {'height': 15, 'prompt': '▶ '}
-<
-Note: This variable is also used by https://github.com/bfrg/vim-fzy-find in
-order to provide a uniform terminal-window height and fzy prompt.
+Options can be passed to fzy through the |Dictionary| variable |g:fzy|. The
+following options are supported:
 
+g:fzy.lines                                                      *g:fzy.lines*
+            Specify how many lines of results to show. This is equivalent to
+            fzy's "--lines" option.
+            Default: 10
+
+g:fzy.prompt                                                    *g:fzy.prompt*
+            Fzy input prompt. Equivalent to fzy's "--prompt" option.
+            Default: "▶ "
+
+g:fzy.showinfo                                                *g:fzy.showinfo*
+            Show selection info line. Equivalent to fzy's "--show-info"
+            option.
+            Default: 0
+
+Example:
+>
+    let g:fzy = {'lines': 15, 'prompt': '>>> ', 'showinfo': 1}
+<
+Note: All three entries are shared with https://github.com/bfrg/vim-fzy-find
+in order to provide a uniform fzy interface.
 
 ==============================================================================
 TIPS AND TRICKS                                          *fzy-builtins-tricks*
