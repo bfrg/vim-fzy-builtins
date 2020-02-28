@@ -3,8 +3,8 @@
 Fuzzy-select buffers, files in `arglist`, tags, help tags, `oldfiles`, and file
 marks using the fuzzy-searcher [fzy][fzy].
 
-**Note:** This plugin requires [vim-fzy][vim-fzy]. See
-[installation](#installation) instructions below.
+**Note:** This plugin requires [vim-fzy][vim-fzy]. See [installation](#installation)
+instructions below.
 
 <dl>
   <p align="center">
@@ -17,48 +17,49 @@ marks using the fuzzy-searcher [fzy][fzy].
 
 ## Usage
 
-| Command       | Description                                                             |
-|---------------|-------------------------------------------------------------------------|
-| `:Buffer`     | List **buffers**, edit selected buffer in current window.               |
-| `:SBuffer`\*  | Same as `:Buffer`, but edit the selected buffer in a new split.         |
-| `:Args`       | List **global arglist**, edit selected file in current window.          |
-| `:SArgs`\*    | Same as `:Args`, but edit the selected file in a new split.             |
-| `:Largs`      | List **local arglist**, edit selected file in current window.           |
-| `:SLargs`\*   | Same as `:Largs`, but edit the selected file in a new split.            |
-| `:MRUedit`    | List **Most-Recently-Used** files, edit selected file in current window.|
-| `:MRUsplit`\* | Same as `:MRUedit`, but edit the selected file in a new split.          |
-| `:Tjump`      | List **tags**, jump to selected tag in current window.                  |
-| `:STjump`\*   | Same as `:Tjump`, but jump to the selected tag in a new split.          |
-| `:Marks`      | List **marks**, jump to the selected mark in the current window.        |
-| `:SMarks`\*   | Same as `:Marks`, but jump to the selected mark in a new split.         |
-| `:Help`\*     | List **help tags**, open help page with the selected tag in new split.  |
+| Command                 | Description                                                               |
+| ----------------------- | ------------------------------------------------------------------------- |
+| <kbd>:Buffer</kbd>      | List **buffers**, edit selected buffer in current window.                 |
+| <kbd>:SBuffer</kbd>\*   | Same as <kbd>:Buffer</kbd>, but edit the selected buffer in a new split.  |
+| <kbd>:Args</kbd>        | List **global arglist**, edit selected file in current window.            |
+| <kbd>:SArgs</kbd>\*     | Same as <kbd>:Args</kbd>, but edit the selected file in a new split.      |
+| <kbd>:Largs</kbd>       | List **local arglist**, edit selected file in current window.             |
+| <kbd>:SLargs</kbd>\*    | Same as <kbd>:Largs</kbd>, but edit the selected file in a new split.     |
+| <kbd>:MRUedit</kbd>     | List **Most-Recently-Used** files, edit selected file in current window.  |
+| <kbd>:MRUsplit</kbd>\*  | Same as <kbd>:MRUedit</kbd>, but edit the selected file in a new split.   |
+| <kbd>:Tjump</kbd>       | List **tags**, jump to selected tag in current window.                    |
+| <kbd>:STjump</kbd>\*    | Same as <kbd>:Tjump</kbd>, but jump to the selected tag in a new split.   |
+| <kbd>:Marks</kbd>       | List **marks**, jump to the selected mark in the current window.          |
+| <kbd>:SMarks</kbd>\*    | Same as <kbd>:Marks</kbd>, but jump to the selected mark in a new split.  |
+| <kbd>:Help</kbd>\*      | List **help tags**, open help page with the selected tag in new split.    |
 
 
 \*Commands that split the current window accept a **command modifier**. For
 example, to open the help page with the selected tag in a new vertical split,
-run `:vertical Help`. `:tab MRUsplit` will open the selected file in a new tab.
+run <kbd>:vertical Help</kbd>. <kbd>:tab MRUsplit</kbd> will open the selected
+file in a new tab.
 
-For a full list of supported command modifiers, see `:help fzy-:SBuffer`.
+For a full list of supported command modifiers, see <kbd>:help fzy-:SBuffer</kbd>.
 
 
 ## Configuration
 
-Options can be passed to `fzy` through the variable `g:fzy`. Currently, the
-following entries are supported:
+Options can be passed to fzy through the dictionary variable `g:fzy`. Currently,
+the following entries are supported:
 
-| Entry             | Description                                                                       | Default |
-| ----------------- | --------------------------------------------------------------------------------- | ------- |
-| `g:fzy.lines`     | Specify how many lines of results to show. Equivalent to fzy's `--lines` option.  | `10`    |
-| `g:fzy.prompt`    | Fzy input prompt. Equivalent to fzy's `--prompt` option.                          | `▶ `    |
-| `g:fzy.showinfo`  | Show selection info line. Equivalent to fzy's `--show-info` option.               | `0`     |
+| Entry             | Description                                                               | Default |
+| ----------------- | ------------------------------------------------------------------------- | ------- |
+| `g:fzy.lines`     | Specify how many lines of results to show. Sets the fzy `--lines` option. | `10`    |
+| `g:fzy.prompt`    | Set the fzy input prompt.                                                 | `▶ `    |
+| `g:fzy.showinfo`  | If true, fzy is invoked with the `--show-info` option.                    | `0`     |
 
 Example:
 ```vim
 let g:fzy = {'lines': 15, 'prompt': '>>> ', 'showinfo': 1}
 ```
 
-**Note:** The values are also used by [vim-fzy-find][fzy-find] to provide a
-uniform fzy interface.
+**Note:** All three entries are also used by [vim-fzy-find][fzy-find] to provide
+a uniform fzy interface.
 
 
 ## Tips and Tricks
@@ -122,7 +123,7 @@ $ vim -u NONE -c "helptags vim-fzy/doc" -c q
 $ vim -u NONE -c "helptags vim-fzy-builtins/doc" -c q
 ```
 **Note:** The directory name `git-plugins` is arbitrary, you can pick any other
-name. For more details see `:help packages`.
+name. For more details see <kbd>:help packages</kbd>.
 
 #### Plugin Managers
 
@@ -136,7 +137,7 @@ Plug 'bfrg/vim-fzy-builtins'
 
 ## License
 
-Distributed under the same terms as Vim itself. See `:help license`.
+Distributed under the same terms as Vim itself. See <kbd>:help license</kbd>.
 
 [fzy]: https://github.com/jhawthorn/fzy
 [vim-fzy]: https://github.com/bfrg/vim-fzy
