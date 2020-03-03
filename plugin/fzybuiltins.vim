@@ -3,7 +3,7 @@
 " File:         plugin/fzybuiltins.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-builtins
-" Last Change:  Dec 20, 2019
+" Last Change:  Mar 3, 2020
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -16,23 +16,23 @@ let s:save_cpo = &cpoptions
 set cpoptions&vim
 
 " Jump to Most-Recently-Used files, v:oldfiles
-command! -bar MRUedit  call fzy#builtins#mru('edit')
+command! -bar MRUedit  call fzy#builtins#mru('edit', '')
 command! -bar MRUsplit call fzy#builtins#mru('split', <q-mods>)
 
 " Jump to listed buffers
-command! -bar -bang Buffer  call fzy#builtins#buffers('buffer', <bang>0)
+command! -bar -bang Buffer  call fzy#builtins#buffers('buffer', <bang>0, '')
 command! -bar -bang SBuffer call fzy#builtins#buffers('sbuffer', <bang>0, <q-mods>)
 
 " Jump to file in global arglist
-command! -bar Args  call fzy#builtins#arg('edit', 0)
+command! -bar Args  call fzy#builtins#arg('edit', 0, '')
 command! -bar SArgs call fzy#builtins#arg('split', 0, <q-mods>)
 
 " Jump to file in local arglist
-command! -bar Largs  call fzy#builtins#arg('edit', 1)
+command! -bar Largs  call fzy#builtins#arg('edit', 1, '')
 command! -bar SLargs call fzy#builtins#arg('split', 1, <q-mods>)
 
 " Jump to tags
-command! -bar  Tjump call fzy#builtins#tags('tjump')
+command! -bar  Tjump call fzy#builtins#tags('tjump', '')
 command! -bar STjump call fzy#builtins#tags('stjump', <q-mods>)
 
 " Jump to file marks
