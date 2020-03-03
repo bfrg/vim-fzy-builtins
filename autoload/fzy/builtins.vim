@@ -34,11 +34,9 @@ endfunction
 
 function! fzy#builtins#buffers(edit_cmd, bang, mods) abort
     let cmd = empty(a:mods) ? a:edit_cmd : (a:mods .. ' ' .. a:edit_cmd)
-    let items = map(
-            \ filter(range(1, bufnr('$')),
-            \   {_,val -> a:bang ? bufexists(val) : buflisted(val)}),
-            \ {_,val -> empty(bufname(val)) ? val : bufname(val)}
-            \ )
+    let items = range(1, bufnr('$'))
+            \ ->filter({_,i -> a:bang ? bufexists(i) : buflisted(i)})
+            \ ->map({_,i -> empty(bufname(i)) ? i : bufname(i)})
     let stl = printf(':%s [%s buffers (%d)]', cmd, a:bang ? 'all' : 'listed', len(items))
     return fzy#start(items, funcref('s:open_file_cb', [cmd]), {
             \ 'prompt': s:get('prompt'),
@@ -50,7 +48,7 @@ endfunction
 
 function! fzy#builtins#mru(edit_cmd, mods) abort
     let cmd = empty(a:mods) ? a:edit_cmd : (a:mods .. ' ' .. a:edit_cmd)
-    let items = filter(copy(v:oldfiles), "filereadable(fnamemodify(v:val, ':p'))")
+    let items = copy(v:oldfiles)->filter("filereadable(fnamemodify(v:val, ':p'))")
     return fzy#start(items, funcref('s:open_file_cb', [cmd]), {
             \ 'prompt': s:get('prompt'),
             \ 'lines': s:get('lines'),
@@ -84,7 +82,7 @@ endfunction
 
 function! fzy#builtins#tags(tags_cmd, mods) abort
     let cmd = empty(a:mods) ? a:tags_cmd : (a:mods .. ' ' .. a:tags_cmd)
-    let items = uniq(sort(map(taglist('.*'), 'v:val.name')))
+    let items = taglist('.*')->map('v:val.name')->sort()->uniq()
     return fzy#start(items, funcref('s:open_tag_cb', [cmd]), {
             \ 'prompt': s:get('prompt'),
             \ 'lines': s:get('lines'),
@@ -95,7 +93,7 @@ endfunction
 
 function! fzy#builtins#marks(bang, ...) abort
     let cmd = a:0 ? a:1 .. ' split' : ''
-    let output = split(execute('marks'), '\n')
+    let output = execute('marks')->split('\n')
     return fzy#start(output[1:], funcref('s:marks_cb', [cmd, a:bang]), {
             \ 'prompt': s:get('prompt'),
             \ 'lines': s:get('lines'),
