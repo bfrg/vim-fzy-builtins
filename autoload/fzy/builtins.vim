@@ -48,7 +48,9 @@ endfunction
 
 function! fzy#builtins#mru(edit_cmd, mods) abort
     let cmd = empty(a:mods) ? a:edit_cmd : (a:mods .. ' ' .. a:edit_cmd)
-    let items = copy(v:oldfiles)->filter("filereadable(fnamemodify(v:val, ':p'))")
+    let items = copy(v:oldfiles)
+            \ ->filter("filereadable(fnamemodify(v:val, ':p'))")
+            \ ->map("fnamemodify(v:val, ':~:.')")
     return fzy#start(items, funcref('s:open_file_cb', [cmd]), {
             \ 'prompt': s:get('prompt'),
             \ 'lines': s:get('lines'),
