@@ -3,11 +3,11 @@
 " File:         plugin/fzybuiltins.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-builtins
-" Last Change:  Mar 3, 2020
+" Last Change:  Apr 4, 2020
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
-if exists('g:loaded_fzybuiltins')
+if exists('g:loaded_fzybuiltins') || !has('patch-8.1.1828')
     finish
 endif
 let g:loaded_fzybuiltins = 1

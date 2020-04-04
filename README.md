@@ -3,9 +3,6 @@
 Fuzzy-select buffers, files in `arglist`, tags, help tags, `oldfiles`, and file
 marks using the fuzzy-searcher [fzy][fzy].
 
-**Note:** This plugin requires [vim-fzy][vim-fzy]. See [installation](#installation)
-instructions below.
-
 <dl>
   <p align="center">
   <a href="https://asciinema.org/a/268637">
@@ -13,6 +10,13 @@ instructions below.
   </a>
   </p>
 </dl>
+
+## Requirements
+
+- Vim `>= 8.1.1828`
+- [fzy][fzy]
+- [vim-fzy][vim-fzy] (see [installation](#installation) instructions below)
+- [cut(1)][cut] (for the <kbd>:Help</kbd> command)
 
 
 ## Usage
@@ -44,14 +48,14 @@ For a full list of supported command modifiers, see <kbd>:help fzy-:SBuffer</kbd
 
 ## Configuration
 
-Options can be passed to fzy through the dictionary variable `g:fzy`. Currently,
-the following entries are supported:
+Options can be passed to fzy through the dictionary `g:fzy`. Currently, the
+following entries are supported:
 
-| Entry             | Description                                                               | Default |
-| ----------------- | ------------------------------------------------------------------------- | ------- |
-| `g:fzy.lines`     | Specify how many lines of results to show. Sets the fzy `--lines` option. | `10`    |
-| `g:fzy.prompt`    | Set the fzy input prompt.                                                 | `▶ `    |
-| `g:fzy.showinfo`  | If true, fzy is invoked with the `--show-info` option.                    | `0`     |
+| Entry       | Description                                                               | Default |
+| ----------- | ------------------------------------------------------------------------- | ------- |
+| `lines`     | Specify how many lines of results to show. Sets the fzy `--lines` option. | `10`    |
+| `prompt`    | Set the fzy input prompt.                                                 | `▶ `    |
+| `showinfo`  | If true, fzy is invoked with the `--show-info` option.                    | `0`     |
 
 Example:
 ```vim
@@ -141,6 +145,7 @@ Distributed under the same terms as Vim itself. See <kbd>:help license</kbd>.
 
 [fzy]: https://github.com/jhawthorn/fzy
 [vim-fzy]: https://github.com/bfrg/vim-fzy
+[cut]: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/cut.html
 [fzy-find]: https://github.com/bfrg/vim-fzy-find
 [tinymru]: https://github.com/romainl/vim-tinyMRU
 [plug]: https://github.com/junegunn/vim-plug
