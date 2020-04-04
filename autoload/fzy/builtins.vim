@@ -35,8 +35,8 @@ endfunction
 function! fzy#builtins#buffers(edit_cmd, bang, mods) abort
     let cmd = empty(a:mods) ? a:edit_cmd : (a:mods .. ' ' .. a:edit_cmd)
     let items = range(1, bufnr('$'))
-            \ ->filter({_,i -> a:bang ? bufexists(i) : buflisted(i)})
-            \ ->map({_,i -> empty(bufname(i)) ? i : bufname(i)})
+            \ ->filter(a:bang ? 'bufexists(v:val)' : 'buflisted(v:val)')
+            \ ->map('empty(bufname(v:val)) ? v:val : fnamemodify(bufname(v:val), ":~:.")')
     let stl = printf(':%s [%s buffers (%d)]', cmd, a:bang ? 'all' : 'listed', len(items))
     return fzy#start(items, funcref('s:open_file_cb', [cmd]), {
             \ 'prompt': s:get('prompt'),
