@@ -3,15 +3,15 @@
 " File:         autoload/fzy/builtins.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-builtins
-" Last Change:  Mar 3, 2020
+" Last Change:  Apr 4, 2020
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-let s:defaults = {'prompt': '▶ ', 'lines': 10}
-let s:get = {k -> has_key(get(g:, 'fzy', {}), k) ? get(g:fzy, k) : get(s:defaults, k)}
+let s:defaults = {'prompt': '▶ ', 'lines': 10, 'showinfo': 0}
+let s:get = {k -> get(g:, 'fzy', {})->get(k, get(s:defaults, k))}
 
 function! s:open_file_cb(vim_cmd, choice) abort
     let fname = fnameescape(a:choice)
