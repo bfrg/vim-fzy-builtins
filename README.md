@@ -13,7 +13,7 @@ marks using the fuzzy-searcher [fzy][fzy].
 
 ## Requirements
 
-- Vim `>= 8.1.1828`
+- Vim `>= 8.1.1828` (`>= 8.2.0204` for popup window)
 - [fzy][fzy]
 - [vim-fzy][vim-fzy] (see [installation](#installation) instructions below)
 - [cut(1)][cut] (for the <kbd>:Help</kbd> command)
@@ -51,19 +51,95 @@ For a full list of supported command modifiers, see <kbd>:help fzy-:SBuffer</kbd
 Options can be passed to fzy through the dictionary `g:fzy`. Currently, the
 following entries are supported:
 
-| Entry       | Description                                                               | Default |
-| ----------- | ------------------------------------------------------------------------- | ------- |
-| `lines`     | Specify how many lines of results to show. Sets the fzy `--lines` option. | `10`    |
-| `prompt`    | Set the fzy input prompt.                                                 | `▶ `    |
-| `showinfo`  | If true, fzy is invoked with the `--show-info` option.                    | `0`     |
+| Entry            | Description                                                               | Default      |
+| ---------------- | ------------------------------------------------------------------------- | ------------ |
+| `lines`          | Specify how many lines of results to show. Sets the fzy `--lines` option. | `10`         |
+| `prompt`         | Set the fzy input prompt.                                                 | `'▶ '`       |
+| `showinfo`       | If true, fzy is invoked with the `--show-info` option.                    | `0`          |
+| `term_highlight` | Highlight group for the terminal window.                                  | `'Terminal'` |
+| `popup`          | Display fzy in a popup window. Entry must be a dictionary.                | see below    |
 
-Example:
+**Note:** All entries are also used by [vim-fzy-find][fzy-find] to provide a
+uniform fzy interface.
+
+When the `popup` entry is specified, the fzy terminal is displayed in a popup
+window in the center of the screen. When set to an empty dictionary, the
+following values are used:
 ```vim
-let g:fzy = {'lines': 15, 'prompt': '>>> ', 'showinfo': 1}
+{
+    'padding': [0, 1, 0, 1],
+    'border': [],
+    'minwidth': 80
+}
 ```
 
-**Note:** All three entries are also used by [vim-fzy-find][fzy-find] to provide
-a uniform fzy interface.
+The following `popup` entries can be set: `line`, `col`, `pos`, `minwidth`,
+`drag`, `resize`, `close`, `padding`, `border`, `borderhighlight`,
+`borderchars`, `highlight`, and `zindex`. For more details on each entry see
+<kbd>:help popup-usage</kbd> as well as the examples below.
+
+
+## Examples
+
+1. Display 15 items, use a custom prompt, and show the selection info line:
+   ```vim
+   let g:fzy = {
+           \ 'lines': 15,
+           \ 'prompt': '>>> ',
+           \ 'showinfo': 1
+           \ }
+   ```
+2. Same as 1. but display fzy in a popup window, use the default popup options:
+   ```vim
+   let g:fzy = {
+           \ 'lines': 15,
+           \ 'prompt': '>>> ',
+           \ 'showinfo': 1,
+           \ 'popup': {}
+           \ }
+   ```
+3. Use a custom popup border and custom highlighting:
+   ```vim
+   let g:fzy = {
+           \   'lines': 15,
+           \   'showinfo': 1,
+           \   'term_highlight': 'NormalDark',
+           \   'popup': {
+           \     'minwidth': 90,
+           \     'highlight': 'NormalDark',
+           \     'borderchars': ['─', '│', '─', '│', '┌', '┐', '┘', '└'],
+           \     'padding': [0, 1, 0, 1],
+           \     'borderhighlight': ['GreyDark']
+           \   }
+           \ }
+   ```
+4. Same as 3. but don't draw a popup border:
+   ```vim
+   let g:fzy = {
+           \   'lines': 15,
+           \   'showinfo': 1,
+           \   'term_highlight': 'NormalDark',
+           \   'popup': {
+           \     'minwidth': 90,
+           \     'highlight': 'NormalDark',
+           \     'borderchars': [' '],
+           \     'padding': [0, 1, 0, 1],
+           \     'borderhighlight': ['GreyDark']
+           \   }
+           \ }
+   ```
+5. Open the popup window at the 5th screen line from the top of the screen:
+   ```vim
+   let g:fzy = {
+           \   'lines': 15,
+           \   'showinfo': 1,
+           \   'popup': {
+           \     'padding': [0, 1, 0, 1],
+           \     'pos': 'topleft',
+           \     'line': 5,
+           \   }
+           \ }
+   ```
 
 
 ## Tips and Tricks
