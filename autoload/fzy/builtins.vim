@@ -29,6 +29,11 @@ const s:fzyopts = {s -> {
         \ 'statusline': s
         \ }}
 
+const s:tools = executable('sed')
+        \ && executable('cut')
+        \ && executable('sort')
+        \ && executable('uniq')
+
 function s:set_popup_opts(dict, title) abort
     let opts = {'popup': {'title': a:title }}
     call extend(opts.popup, s:get('popup'), 'keep')
@@ -113,7 +118,9 @@ endfunction
 
 function fzy#builtins#tags(tags_cmd, mods) abort
     const cmd = empty(a:mods) ? a:tags_cmd : (a:mods .. ' ' .. a:tags_cmd)
-    const items = taglist('.*')->map('v:val.name')->sort()->uniq()
+    const items = s:tools
+            \ ? printf("sed '/^!_TAG_/ d' %s | cut -f 1 | sort | uniq", tagfiles()->join())
+            \ : taglist('.*')->map('v:val.name')->sort()->uniq()
     const stl = printf(':%s [%s]', cmd, tagfiles()->map('fnamemodify(v:val, ":~:.")')->join(', '))
     let opts = s:fzyopts(stl)
 
