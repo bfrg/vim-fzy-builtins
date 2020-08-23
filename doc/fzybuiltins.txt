@@ -200,10 +200,10 @@ Custom commands ~
 
 If you prefer shorter Ex commands, add the following to your |vimrc|:
 >
-    command! ME MRUedit
-    command! MS MRUsplit
-    command! MV vertical MRUsplit
-    command! MT tab MRUsplit
+    command ME MRUedit
+    command MS MRUsplit
+    command MV vertical MRUsplit
+    command MT tab MRUsplit
 <
 The names are inspired by https://github.com/romainl/vim-tinyMRU.
 

@@ -148,10 +148,10 @@ The following `popup` entries can be set: `line`, `col`, `pos`, `minwidth`,
 
 If you prefer shorter Ex commands, add the following to your `vimrc`:
 ```vim
-command! ME MRUedit
-command! MS MRUsplit
-command! MV vertical MRUsplit
-command! MT tab MRUsplit
+command ME MRUedit
+command MS MRUsplit
+command MV vertical MRUsplit
+command MT tab MRUsplit
 ```
 The command names are inspired by [vim-tinyMRU][tinymru].
 
