@@ -74,7 +74,7 @@ function fzy#builtins#mru(edit_cmd, mods) abort
     const items = copy(v:oldfiles)
             \ ->filter("fnamemodify(v:val, ':p')->filereadable()")
             \ ->map("fnamemodify(v:val, ':~:.')")
-    const stl = printf(':%s (oldfiles)', cmd, len(items))
+    const stl = printf(':%s (oldfiles)', cmd)
     let opts = s:fzyopts(stl)
 
     if s:use_popup()
@@ -88,7 +88,7 @@ function fzy#builtins#arg(edit_cmd, local, mods) abort
     const items = a:local ? argv() : argv(-1, -1)
     const str = a:local ? 'local arglist' : 'global arglist'
     const cmd = empty(a:mods) ? a:edit_cmd : (a:mods .. ' ' .. a:edit_cmd)
-    const stl = printf(':%s (%s)', cmd, str, len(items))
+    const stl = printf(':%s (%s)', cmd, str)
     let opts = s:fzyopts(stl)
 
     if s:use_popup()
