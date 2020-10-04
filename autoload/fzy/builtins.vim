@@ -3,7 +3,7 @@
 " File:         autoload/fzy/builtins.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-builtins
-" Last Change:  Aug 23, 2020
+" Last Change:  Oct 4, 2020
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
@@ -34,6 +34,16 @@ const s:tools = executable('sed')
         \ && executable('sort')
         \ && executable('uniq')
 
+function s:tryexe(cmd)
+    try
+        execute a:cmd
+    catch
+        echohl ErrorMsg
+        echomsg matchstr(v:exception, '^Vim\%((\a\+)\)\=:\zs.*')
+        echohl None
+    endtry
+endfunction
+
 function s:set_popup_opts(dict, title) abort
     let opts = {'popup': {'title': a:title }}
     call extend(opts.popup, s:get('popup'), 'keep')
@@ -43,12 +53,12 @@ endfunction
 function s:open_file_cb(vim_cmd, choice) abort
     const fname = fnameescape(a:choice)
     call histadd('cmd', a:vim_cmd .. ' ' .. fname)
-    execute a:vim_cmd fname
+    call s:tryexe(a:vim_cmd .. ' ' .. fname)
 endfunction
 
 function s:open_tag_cb(vim_cmd, choice) abort
     call histadd('cmd', a:vim_cmd .. ' ' .. a:choice)
-    execute a:vim_cmd escape(a:choice, '"')
+    call s:tryexe(a:vim_cmd .. ' ' .. escape(a:choice, '"'))
 endfunction
 
 function s:marks_cb(split_cmd, bang, item) abort
@@ -56,7 +66,7 @@ function s:marks_cb(split_cmd, bang, item) abort
         execute a:split_cmd
     endif
     const cmd = a:bang ? "g`" : "`"
-    execute 'normal! ' .. cmd .. a:item[1]
+    call s:tryexe('normal! ' .. cmd .. a:item[1])
 endfunction
 
 function fzy#builtins#buffers(edit_cmd, bang, mods) abort
