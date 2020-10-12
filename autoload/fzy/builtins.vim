@@ -3,36 +3,18 @@
 " File:         autoload/fzy/builtins.vim
 " Author:       bfrg <https://github.com/bfrg>
 " Website:      https://github.com/bfrg/vim-fzy-builtins
-" Last Change:  Oct 4, 2020
+" Last Change:  Oct 12, 2020
 " License:      Same as Vim itself (see :h license)
 " ==============================================================================
 
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-const s:defaults = {
-        \ 'prompt': '▶ ',
-        \ 'lines': 10,
-        \ 'showinfo': 0,
-        \ 'term_highlight': 'Terminal',
-        \ 'popup': {}
-        \ }
-
-const s:get = {k -> get(g:, 'fzy', {})->get(k, get(s:defaults, k))}
-const s:use_popup = {-> has_key(get(g:, 'fzy', {}), 'popup')}
-
-const s:fzyopts = {s -> {
-        \ 'prompt': s:get('prompt'),
-        \ 'lines': s:get('lines'),
-        \ 'showinfo': s:get('showinfo'),
-        \ 'term_highlight': s:get('term_highlight'),
-        \ 'statusline': s
-        \ }}
-
-const s:tools = executable('sed')
-        \ && executable('cut')
-        \ && executable('sort')
-        \ && executable('uniq')
+function s:opts(title, space = 0) abort
+    let opts = get(g:, 'fzy', {})->copy()->extend({'statusline': a:title, 'prompt': '▶ '})
+    call get(opts, 'popup', {})->extend({'title': a:space ? ' ' .. a:title : a:title})
+    return opts
+endfunction
 
 function s:tryexe(cmd)
     try
@@ -42,12 +24,6 @@ function s:tryexe(cmd)
         echomsg matchstr(v:exception, '^Vim\%((\a\+)\)\=:\zs.*')
         echohl None
     endtry
-endfunction
-
-function s:set_popup_opts(dict, title) abort
-    let opts = {'popup': {'title': a:title }}
-    call extend(opts.popup, s:get('popup'), 'keep')
-    call extend(a:dict, opts)
 endfunction
 
 function s:open_file_cb(vim_cmd, choice) abort
@@ -75,13 +51,7 @@ function fzy#builtins#buffers(edit_cmd, bang, mods) abort
             \ ->filter(a:bang ? 'bufexists(v:val)' : 'buflisted(v:val)')
             \ ->map('empty(bufname(v:val)) ? v:val : fnamemodify(bufname(v:val), ":~:.")')
     const stl = printf(':%s (%s buffers)', cmd, a:bang ? 'all' : 'listed')
-    let opts = s:fzyopts(stl)
-
-    if s:use_popup()
-        call s:set_popup_opts(opts, stl)
-    endif
-
-    return fzy#start(items, funcref('s:open_file_cb', [cmd]), opts)
+    return fzy#start(items, funcref('s:open_file_cb', [cmd]), s:opts(stl))
 endfunction
 
 function fzy#builtins#mru(edit_cmd, mods) abort
@@ -90,13 +60,7 @@ function fzy#builtins#mru(edit_cmd, mods) abort
             \ ->filter("fnamemodify(v:val, ':p')->filereadable()")
             \ ->map("fnamemodify(v:val, ':~:.')")
     const stl = printf(':%s (oldfiles)', cmd)
-    let opts = s:fzyopts(stl)
-
-    if s:use_popup()
-        call s:set_popup_opts(opts, stl)
-    endif
-
-    return fzy#start(items, funcref('s:open_file_cb', [cmd]), opts)
+    return fzy#start(items, funcref('s:open_file_cb', [cmd]), s:opts(stl))
 endfunction
 
 function fzy#builtins#arg(edit_cmd, local, mods) abort
@@ -104,53 +68,29 @@ function fzy#builtins#arg(edit_cmd, local, mods) abort
     const str = a:local ? 'local arglist' : 'global arglist'
     const cmd = empty(a:mods) ? a:edit_cmd : (a:mods .. ' ' .. a:edit_cmd)
     const stl = printf(':%s (%s)', cmd, str)
-    let opts = s:fzyopts(stl)
-
-    if s:use_popup()
-        call s:set_popup_opts(opts, stl)
-    endif
-
-    return fzy#start(items, funcref('s:open_file_cb', [cmd]), opts)
+    return fzy#start(items, funcref('s:open_file_cb', [cmd]), s:opts(stl))
 endfunction
 
 function fzy#builtins#help(help_cmd, mods) abort
     const cmd = empty(a:mods) ? a:help_cmd : (a:mods .. ' ' .. a:help_cmd)
     const items = 'cut -f 1 ' .. findfile('doc/tags', &runtimepath, -1)->join()
     const stl = printf(':%s (helptags)', cmd)
-    let opts = s:fzyopts(stl)
-
-    if s:use_popup()
-        call s:set_popup_opts(opts, stl)
-    endif
-
-    return fzy#start(items, funcref('s:open_tag_cb', [cmd]), opts)
+    return fzy#start(items, funcref('s:open_tag_cb', [cmd]), s:opts(stl))
 endfunction
 
 function fzy#builtins#tags(tags_cmd, mods) abort
     const cmd = empty(a:mods) ? a:tags_cmd : (a:mods .. ' ' .. a:tags_cmd)
-    const items = s:tools
+    const items = executable('sed') && executable('cut') && executable('sort') && executable('uniq')
             \ ? printf("sed '/^!_TAG_/ d' %s | cut -f 1 | sort | uniq", tagfiles()->join())
             \ : taglist('.*')->map('v:val.name')->sort()->uniq()
     const stl = printf(':%s [%s]', cmd, tagfiles()->map('fnamemodify(v:val, ":~:.")')->join(', '))
-    let opts = s:fzyopts(stl)
-
-    if s:use_popup()
-        call s:set_popup_opts(opts, stl)
-    endif
-
-    return fzy#start(items, funcref('s:open_tag_cb', [cmd]), opts)
+    return fzy#start(items, funcref('s:open_tag_cb', [cmd]), s:opts(stl))
 endfunction
 
 function fzy#builtins#marks(bang, ...) abort
     const cmd = a:0 ? a:1 .. ' split' : ''
     const output = execute('marks')->split('\n')
-    let opts = s:fzyopts(output[0])
-
-    if s:use_popup()
-        call s:set_popup_opts(opts, ' ' .. output[0])
-    endif
-
-    return fzy#start(output[1:], funcref('s:marks_cb', [cmd, a:bang]), opts)
+    return fzy#start(output[1:], funcref('s:marks_cb', [cmd, a:bang]), s:opts(output[0], 1))
 endfunction
 
 let &cpoptions = s:save_cpo

@@ -57,14 +57,14 @@ following entries are supported:
 | `prompt`         | Set the fzy input prompt.                                                 | `'▶ '`       |
 | `showinfo`       | If true, fzy is invoked with the `--show-info` option.                    | `0`          |
 | `term_highlight` | Highlight group for the terminal window.                                  | `'Terminal'` |
-| `popup`          | Display fzy in a popup window. Entry must be a dictionary.                | see below    |
+| `popupwin`       | Display fzy in a popup terminal.                                          | `v:false`    |
+| `popup`          | Popup window options. Entry must be a dictionary.                         | see below    |
 
 **Note:** All entries are also used by [vim-fzy-find][fzy-find] to provide a
 uniform fzy interface.
 
-When the `popup` entry is specified, the fzy terminal is displayed in a popup
-window in the center of the screen. When set to an empty dictionary, the
-following values are used:
+The appearance of the popup window can be changed through the `popup` key. When
+unspecified or set to an empty dictionary, the following values are used:
 ```vim
 {
     'padding': [0, 1, 0, 1],
@@ -95,6 +95,7 @@ The following `popup` entries can be set: `line`, `col`, `pos`, `minwidth`,
            \ 'lines': 15,
            \ 'prompt': '>>> ',
            \ 'showinfo': 1,
+           \ 'popupwin': 1,
            \ 'popup': {}
            \ }
    ```
@@ -104,6 +105,7 @@ The following `popup` entries can be set: `line`, `col`, `pos`, `minwidth`,
            \   'lines': 15,
            \   'showinfo': 1,
            \   'term_highlight': 'NormalDark',
+           \   'popupwin': 1,
            \   'popup': {
            \     'minwidth': 90,
            \     'highlight': 'NormalDark',
@@ -119,6 +121,7 @@ The following `popup` entries can be set: `line`, `col`, `pos`, `minwidth`,
            \   'lines': 15,
            \   'showinfo': 1,
            \   'term_highlight': 'NormalDark',
+           \   'popupwin': 1,
            \   'popup': {
            \     'minwidth': 90,
            \     'highlight': 'NormalDark',
@@ -133,6 +136,7 @@ The following `popup` entries can be set: `line`, `col`, `pos`, `minwidth`,
    let g:fzy = {
            \   'lines': 15,
            \   'showinfo': 1,
+           \   'popupwin': 1,
            \   'popup': {
            \     'padding': [0, 1, 0, 1],
            \     'pos': 'topleft',

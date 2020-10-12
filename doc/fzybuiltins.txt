@@ -120,6 +120,12 @@ g:fzy.term_highlight                                    *g:fzy.term_highlight*
             Highlight group for the terminal window.
             Default: |hl-Terminal|
 
+g:fzy.popupwin                                                *g:fzy.popupwin*
+             If true, fzy is opened in a |popup-terminal|. Note: This requires
+             Vim >= 8.2.0204. The appearance of the popup window can be
+             specified through the "popup" entry (see below).
+             Default: |v:false|
+
 g:fzy.popup                                                      *g:fzy.popup*
             When this entry is present the fzy terminal is displayed in a
             |popup-window|. Set it to {} for default popup options.
@@ -150,6 +156,7 @@ EXAMPLES                                               *fzy-builtins-examples*
             \ 'lines': 15,
             \ 'prompt': '>>> ',
             \ 'showinfo': 1,
+            \ 'popupwin': 1,
             \ 'popup': {}
             \ }
 
@@ -158,6 +165,7 @@ EXAMPLES                                               *fzy-builtins-examples*
             \   'lines': 15,
             \   'showinfo': 1,
             \   'term_highlight': 'NormalDark',
+            \   'popupwin': 1,
             \   'popup': {
             \     'minwidth': 90,
             \     'highlight': 'NormalDark',
@@ -172,6 +180,7 @@ EXAMPLES                                               *fzy-builtins-examples*
             \   'lines': 15,
             \   'showinfo': 1,
             \   'term_highlight': 'NormalDark',
+            \   'popupwin': 1,
             \   'popup': {
             \     'minwidth': 90,
             \     'highlight': 'NormalDark',
@@ -186,6 +195,7 @@ EXAMPLES                                               *fzy-builtins-examples*
     let g:fzy = {
             \   'lines': 15,
             \   'showinfo': 1,
+            \   'popupwin': 1,
             \   'popup': {
             \     'padding': [0, 1, 0, 1],
             \     'pos': 'topleft',
