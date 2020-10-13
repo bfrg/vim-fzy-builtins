@@ -1,3 +1,9 @@
+# IMPORTANT
+
+This plugin is **DEPRECATED** since the commands are now provided by default by
+[vim-fzy][vim-fzy].
+
+
 # vim-fzy-builtins
 
 Fuzzy-select buffers, files in `arglist`, tags, help tags, `oldfiles`, and file
